@@ -1,0 +1,109 @@
+<form class="example-form" [formGroup]="teacherListForm" (ngSubmit)="onsubmit()">
+  <div class="row">
+    <div class="col-md-4">
+        <mat-form-field class="example-full-width">
+    <mat-label>Adı</mat-label>
+    <input matInput placeholder="Öğretmen Adı..." formControlName="name">
+  </mat-form-field>
+    </div>
+    <div class="col-md-4">
+        <mat-form-field class="example-full-width">
+    <mat-label>Soyadı</mat-label>
+    <input matInput placeholder="Öğretmen Soyadı..." formControlName="surName">
+  </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field class="example-full-width">
+  <mat-label>Email</mat-label>
+  <input matInput placeholder="Öğretmen mail adresi..." formControlName="email">
+</mat-form-field>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="button">
+        <button type="submit" mat-raised-button color="primary"
+        [disabled]="loading"
+        >
+          <span   *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Listele</button>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+        <!-- <button mat-raised-button style="float:right;" (click)="onCreate()">
+            <mat-icon>add</mat-icon>Create
+        </button> -->
+    </div>
+
+  </div>
+
+  <div *ngIf="info!=null && info!=''" class="alert" [ngClass]="{'alert-primary' : success, 'alert-danger':!success}">
+    {{info}}
+    </div>
+
+</form>
+
+<br>
+
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Ad </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="surName">
+      <th mat-header-cell *matHeaderCellDef> Soyad </th>
+      <td mat-cell *matCellDef="let element"> {{element.surName}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="hataliGirisSayisi">
+          <th mat-header-cell *matHeaderCellDef> Hatalı Giriş </th>
+          <td mat-cell *matCellDef="let element"> {{element.hataliGirisSayisi}} </td>
+        </ng-container>
+
+            <!-- Symbol Column -->
+    <ng-container matColumnDef="educationDetail">
+      <th mat-header-cell *matHeaderCellDef> Eğitim Detay </th>
+      <td mat-cell *matCellDef="let element"> {{element.educationDetail}} </td>
+    </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="personalDetail">
+          <th mat-header-cell *matHeaderCellDef> Personel Detay </th>
+          <td mat-cell *matCellDef="let element"> {{element.personalDetail}} </td>
+        </ng-container>
+
+            <!-- Symbol Column -->
+    <ng-container matColumnDef="qualification">
+      <th mat-header-cell *matHeaderCellDef> Yetenek </th>
+      <td mat-cell *matCellDef="let element"> {{element.qualification}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator> -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>
+</div>

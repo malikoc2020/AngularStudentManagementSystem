@@ -1,0 +1,147 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Öğrenci Kurs Güncelle</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <h2 style="color: blue;">{{islemTipi}}</h2>
+
+    <p>
+
+      {{courseModel.kullaniciAdSoyad}}
+
+  </p>
+
+<form [formGroup]="courseForm" (ngSubmit)="onsubmit()">
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Fiyat</mat-label>
+      <input #inputCourseFees type="number" matInput placeholder="Fiyat giriniz." formControlName="courseFees" >
+      <mat-error *ngIf="courseControls.courseFees.invalid">{{GetValidationMessages(courseControls.courseFees,"Fiyat")}}</mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Fiyat(Ödenen)</mat-label>
+      <input type="number" matInput placeholder="Fiyat giriniz." formControlName="paidFees" >
+      <mat-error *ngIf="courseControls.paidFees.invalid">{{GetValidationMessages(courseControls.paidFees,"Ödenen Fiyat")}}</mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Başlangıç Tarihi</mat-label>
+    <!-- #docregion toggle -->
+      <input matInput [matDatepicker]="picker"  formControlName="startDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+
+      <mat-error *ngIf="courseControls.startDate.invalid">{{GetValidationMessages(courseControls.startDate,"Başlanğıç Tarihi")}}</mat-error>
+    <!-- #enddocregion toggle -->
+    </mat-form-field>
+
+  </p>
+
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Bitiş Tarihi</mat-label>
+    <!-- #docregion toggle -->
+      <input matInput [matDatepicker]="picker1"  formControlName="finishDate">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+
+      <mat-error *ngIf="courseControls.finishDate.invalid">{{GetValidationMessages(courseControls.finishDate,"Bitiş Tarihi")}}</mat-error>
+    <!-- #enddocregion toggle -->
+    </mat-form-field>
+
+  </p>
+
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Statü</mat-label>
+      <!-- <select matNativeControl required formControlName="statuId">
+        <option value=1>Kayıt Oldu</option>
+        <option value=2>Kursa Devam Ediyor</option>
+        <option value=3>Mezun Oldu</option>
+        <option value=4>İptal Edildi</option>
+
+
+      </select> -->
+
+      <mat-select formControlName="statuId">
+        <mat-option [value]=1>Kayıt Oldu</mat-option>
+        <mat-option [value]=2>Kursa Devam Ediyor</mat-option>
+          <mat-option [value]=3>Mezun Oldu</mat-option>
+            <mat-option [value]=4>İptal Edildi</mat-option>
+
+      </mat-select>
+
+      <mat-error *ngIf="courseControls.statuId.invalid">{{GetValidationMessages(courseControls.statuId,"Statü")}}</mat-error>
+
+    </mat-form-field>
+  </p>
+
+                <p>
+                  <mat-form-field>
+                    <mat-select [formControl]="courseCtrl"  placeholder="Kurs Adı" (selectionChange)="onChange()" #singleSelect>
+                      <mat-option>
+                        <ngx-mat-select-search [formControl]="courseFilterCtrl"></ngx-mat-select-search>
+                      </mat-option>
+
+                      <mat-option *ngFor="let course of filteredCourses | async" [value]="course">
+                        {{course.name}}
+                      </mat-option>
+                    </mat-select>
+
+                    <mat-error *ngIf="courseControls.courseId.invalid">{{GetValidationMessages(courseControls.courseId,"Kurs")}}</mat-error>
+
+                  </mat-form-field>
+                </p>
+                <!-- <p>
+                  Seçili Öğretmen: {{userCtrl.value?.name}} {{userCtrl.value?.surName}}
+                </p> -->
+
+
+                <!-- <app-single-selection></app-single-selection> -->
+
+
+              <!-- <p><em>Şifre Email adresi olarak kaydedilecektir.</em></p> -->
+
+      <div *ngIf="info!=null && info!=''" class="alert" [ngClass]="{'alert-primary' : success, 'alert-danger':!success}">
+        {{info}}
+        </div>
+
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save Click')">Save</button> -->
+        <div class="button">
+          <button type="submit" mat-raised-button color="primary"
+          [disabled]="loading"
+          >
+            <span   *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            {{islemTipi}}</button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="button">
+          <button type="button" class="btn btn-danger m-1" (click)="KursSil()" [disabled]="courseModel.id<1">Sil</button>
+        </div>
+      </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Kurs Link Güncelle</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <h2 style="color: blue;">{{islemTipi}}</h2>
+
+    <p>
+
+      Kurs Adı : {{courseName}}
+
+  </p>
+
+<form [formGroup]="notificationForm" (ngSubmit)="onsubmit()">
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Başlık</mat-label>
+      <input #inputCourseFees type="text" matInput placeholder="Başlık giriniz." formControlName="title" >
+      <mat-error *ngIf="notificationControls.title.invalid">{{GetValidationMessages(notificationControls.title,"Başlık")}}</mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>İçerik</mat-label>
+      <textarea matInput cdkTextareaAutosize
+      cdkAutosizeMinRows="10"
+      cdkAutosizeMaxRows="10"
+      placeholder="İçerik giriniz." formControlName="contentText" ></textarea>
+      <mat-error *ngIf="notificationControls.contentText.invalid">{{GetValidationMessages(notificationControls.contentText,"İçerik")}}</mat-error>
+    </mat-form-field>
+  </p>
+
+
+      <div *ngIf="info!=null && info!=''" class="alert" [ngClass]="{'alert-primary' : success, 'alert-danger':!success}">
+        {{info}}
+        </div>
+
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save Click')">Save</button> -->
+        <div class="button">
+          <button type="submit" mat-raised-button color="primary"
+          [disabled]="loading"
+          >
+            <span   *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            {{islemTipi}}</button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="button">
+          <button type="button" class="btn btn-danger m-1" (click)="NotificationSil()" [disabled]="notificationModel.id<1">Sil</button>
+        </div>
+      </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

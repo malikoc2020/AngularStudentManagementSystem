@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*Aşağıdaki satır, modalda single selection düzgün çalışmadığı için yazıldı.*/
+.cdk-global-overlay-wrapper, .cdk-overlay-container { z-index: 9999!important; }
+/*
+.modal-dialog {
+  margin: 20vh auto 0px auto
+} */
+
+
+/* .xlModal > .modal-dialog {
+  max-width: 1490px !important;
+  min-width: 971px !important;
+  width: 95% !important;
+} */

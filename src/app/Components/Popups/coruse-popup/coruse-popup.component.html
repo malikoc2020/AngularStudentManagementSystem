@@ -1,0 +1,109 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Kullanıcı Güncelle</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <h2 style="color: blue;">{{islemTipi}}</h2>
+
+    <form [formGroup]="courseForm" (ngSubmit)="onsubmit()">
+
+      <p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Ad</mat-label>
+          <input type="text" matInput placeholder="Ad giriniz." formControlName="name" >
+          <mat-error *ngIf="courseControls.name.invalid">{{GetValidationMessages(courseControls.name,"Ad")}}</mat-error>
+        </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Fiyat</mat-label>
+      <input type="number" matInput placeholder="Fiyat giriniz." formControlName="fees" >
+      <mat-error *ngIf="courseControls.fees.invalid">{{GetValidationMessages(courseControls.fees,"Fiyat")}}</mat-error>
+    </mat-form-field>
+  </p>
+      <p>
+      <mat-form-field class="example-full-width">
+      <mat-label>Yıl</mat-label>
+        <input type="number" matInput placeholder="Yıl giriniz." formControlName="durationYear">
+        <mat-error *ngIf="courseControls.durationYear.invalid">{{GetValidationMessages(courseControls.durationYear,"Yıl")}}</mat-error>
+      </mat-form-field>
+      </p>
+
+        <p>
+          <mat-form-field class="example-full-width">
+          <mat-label>Ay</mat-label>
+            <input type="number" matInput placeholder="Ay giriniz." formControlName="durationMonth">
+            <mat-error *ngIf="courseControls.durationMonth.invalid">{{GetValidationMessages(courseControls.durationMonth,"Ay")}}</mat-error>
+          </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field class="example-full-width">
+            <mat-label>Hafta</mat-label>
+              <input type="number" matInput placeholder="Hafta giriniz." formControlName="durationWeek">
+              <mat-error *ngIf="courseControls.durationWeek.invalid">{{GetValidationMessages(courseControls.durationWeek,"Hafta")}}</mat-error>
+            </mat-form-field>
+            </p>
+
+            <p>
+              <mat-form-field class="example-full-width">
+              <mat-label>Gün</mat-label>
+                <input type="number" matInput placeholder="Gün giriniz." formControlName="durationDay">
+                <mat-error *ngIf="courseControls.durationDay.invalid">{{GetValidationMessages(courseControls.durationDay,"Gün")}}</mat-error>
+              </mat-form-field>
+              </p>
+
+                <p>
+                  <mat-form-field>
+                    <mat-select [formControl]="userCtrl" placeholder="Öğretmen Adı" #singleSelect>
+                      <mat-option>
+                        <ngx-mat-select-search [formControl]="userFilterCtrl"></ngx-mat-select-search>
+                      </mat-option>
+
+                      <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+                        {{user.name}} {{user.surName}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </p>
+                <!-- <p>
+                  Seçili Öğretmen: {{userCtrl.value?.name}} {{userCtrl.value?.surName}}
+                </p> -->
+
+
+                <!-- <app-single-selection></app-single-selection> -->
+
+
+              <!-- <p><em>Şifre Email adresi olarak kaydedilecektir.</em></p> -->
+
+      <div *ngIf="info!=null && info!=''" class="alert" [ngClass]="{'alert-primary' : success, 'alert-danger':!success}">
+        {{info}}
+        </div>
+
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save Click')">Save</button> -->
+        <div class="button">
+          <button type="submit" mat-raised-button color="primary"
+          [disabled]="loading"
+          >
+            <span   *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            {{islemTipi}}</button>
+        </div>
+      </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

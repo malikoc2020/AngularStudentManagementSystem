@@ -1,0 +1,96 @@
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <h2 style="color: blue;">Yeni Öğretmen Ekle</h2>
+
+    <form [formGroup]="userForm" (ngSubmit)="onsubmit()">
+      <!-- <p>
+      <mat-form-field appearance="fill">
+       <mat-label>Rol</mat-label>
+         <mat-select formControlName="rolId" [(value)]="rolId">
+          <mat-option *ngFor="let rol of rols" [value]="rol.id">
+            {{rol.ad}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="teacherControls.rolId.invalid">{{GetValidationMessages(teacherControls.rolId,"Rol")}}</mat-error>
+      </mat-form-field>
+    </p> -->
+
+<!-- <p>
+  <mat-form-field appearance="fill">
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="rolId" formControlName="rolId">
+      <mat-option>None</mat-option>
+      <mat-option value="1">Option 1</mat-option>
+      <mat-option value="2">Option 2</mat-option>
+      <mat-option value="3">Option 3</mat-option>
+    </mat-select>
+  </mat-form-field>
+</p> -->
+
+
+      <p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Ad</mat-label>
+          <input type="text" matInput placeholder="Ad giriniz." formControlName="name" >
+          <mat-error *ngIf="userControls.name.invalid">{{GetValidationMessages(userControls.name,"Ad")}}</mat-error>
+        </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Soyad</mat-label>
+      <input type="text" matInput placeholder="Soyad giriniz." formControlName="surName" >
+      <mat-error *ngIf="userControls.surName.invalid">{{GetValidationMessages(userControls.surName,"Soyad")}}</mat-error>
+    </mat-form-field>
+  </p>
+      <p>
+      <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+        <input type="text" matInput placeholder="Email giriniz." formControlName="email">
+        <mat-error *ngIf="userControls.email.invalid">{{GetValidationMessages(userControls.email,"E-Posta")}}</mat-error>
+      </mat-form-field>
+      </p>
+
+        <p>
+          <mat-form-field class="example-full-width">
+          <mat-label>Eğitim Detayı</mat-label>
+            <input type="text" matInput placeholder="Eğitim bilgileri giriniz." formControlName="educationDetail">
+            <mat-error *ngIf="userControls.educationDetail.invalid">{{GetValidationMessages(userControls.educationDetail,"Eğitim Detayı")}}</mat-error>
+          </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field class="example-full-width">
+            <mat-label>Personel Detayı</mat-label>
+              <input type="text" matInput placeholder="Personel bilgileri giriniz." formControlName="personalDetail">
+              <mat-error *ngIf="userControls.personalDetail.invalid">{{GetValidationMessages(userControls.personalDetail,"Personel Detayı")}}</mat-error>
+            </mat-form-field>
+            </p>
+
+            <p>
+              <mat-form-field class="example-full-width">
+              <mat-label>Yetenekleri</mat-label>
+                <input type="text" matInput placeholder="Yetenekleri giriniz." formControlName="qualification">
+                <mat-error *ngIf="userControls.qualification.invalid">{{GetValidationMessages(userControls.qualification,"Yetenekler")}}</mat-error>
+              </mat-form-field>
+              </p>
+
+              <p><em>Şifre Email adresi olarak kaydedilecektir.</em></p>
+
+      <div *ngIf="info!=null && info!=''" class="alert" [ngClass]="{'alert-primary' : success, 'alert-danger':!success}">
+        {{info}}
+        </div>
+
+      <div class="button">
+        <button type="submit" mat-raised-button color="primary"
+        [disabled]="loading"
+        >
+          <span   *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Yeni Öğretmen Ekle</button>
+      </div>
+
+      </form>
+
+
+
+    </div>
+  </div>

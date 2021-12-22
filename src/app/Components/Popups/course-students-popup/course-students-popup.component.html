@@ -1,0 +1,121 @@
+<div style="margin: 20px;">
+
+
+
+<h2>{{courseModel.name}} Kursuna Kayıtlı Öğrenciler</h2>
+<hr>
+
+<!-- <form class="example-form" [formGroup]="studentListForm" (ngSubmit)="onsubmit()">
+  <div class="row">
+    <div class="col-md-4">
+        <mat-form-field class="example-full-width">
+    <mat-label>Adı</mat-label>
+    <input matInput placeholder="Öğrenci Adı..." formControlName="name">
+  </mat-form-field>
+    </div>
+    <div class="col-md-4">
+        <mat-form-field class="example-full-width">
+    <mat-label>Soyadı</mat-label>
+    <input matInput placeholder="Öğrenci Soyadı..." formControlName="surName">
+  </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field class="example-full-width">
+  <mat-label>Email</mat-label>
+  <input matInput placeholder="Öğrenci mail adresi..." formControlName="email">
+</mat-form-field>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="button">
+        <button type="submit" mat-raised-button color="primary"
+        [disabled]="loading"
+        >
+          <span   *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Listele</button>
+      </div>
+
+    </div>
+    <div class="col-md-6" style="float: right;">
+    </div>
+
+  </div>
+
+  <div *ngIf="info!=null && info!=''" class="alert" [ngClass]="{'alert-primary' : success, 'alert-danger':!success}">
+    {{info}}
+    </div>
+
+</form> -->
+
+<br>
+
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="No">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element; let i =index"> {{1 + i + (paginator.pageIndex * paginator.pageSize)}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Ad </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="surName">
+      <th mat-header-cell *matHeaderCellDef> Soyad </th>
+      <td mat-cell *matCellDef="let element"> {{element.surName}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+            <!-- Symbol Column -->
+    <ng-container matColumnDef="educationDetail">
+      <th mat-header-cell *matHeaderCellDef> Eğitim Detay </th>
+      <td mat-cell *matCellDef="let element"> {{element.educationDetail}} </td>
+    </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="personalDetail">
+          <th mat-header-cell *matHeaderCellDef> Personel Detay </th>
+          <td mat-cell *matCellDef="let element"> {{element.personalDetail}} </td>
+        </ng-container>
+
+            <!-- Symbol Column -->
+    <ng-container matColumnDef="qualification">
+      <th mat-header-cell *matHeaderCellDef> Yetenek </th>
+      <td mat-cell *matCellDef="let element"> {{element.qualification}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="kurslari">
+      <th mat-header-cell *matHeaderCellDef> Kursları </th>
+      <td mat-cell *matCellDef="let element">
+
+         <ul style=" list-style-type: none; margin: 0; padding:0;"> <!--class="list-group" -->
+          <!-- class="list-group-item"  -->
+          <li *ngFor="let course of element.studentCourses">
+            {{course.courseName}} ({{course.statusName}})
+          </li>
+        </ul>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator> -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>
+</div>
+
+</div>

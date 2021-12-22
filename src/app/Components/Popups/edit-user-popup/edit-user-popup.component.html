@@ -1,0 +1,96 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Kullanıcı Güncelle</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+
+
+
+
+
+
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <h2 style="color: blue;">{{guncellemeTipi}} Güncelle</h2>
+
+      <form [formGroup]="userForm" (ngSubmit)="onsubmit()">
+
+        <p>
+          <mat-form-field class="example-full-width">
+            <mat-label>Ad</mat-label>
+            <input type="text" matInput placeholder="Ad giriniz." formControlName="name" >
+            <mat-error *ngIf="userControls.name.invalid">{{GetValidationMessages(userControls.name,"Ad")}}</mat-error>
+          </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="example-full-width">
+        <mat-label>Soyad</mat-label>
+        <input type="text" matInput placeholder="Soyad giriniz." formControlName="surName" >
+        <mat-error *ngIf="userControls.surName.invalid">{{GetValidationMessages(userControls.surName,"Soyad")}}</mat-error>
+      </mat-form-field>
+    </p>
+        <p>
+        <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+          <input type="text" matInput placeholder="Email giriniz." formControlName="email">
+          <mat-error *ngIf="userControls.email.invalid">{{GetValidationMessages(userControls.email,"E-Posta")}}</mat-error>
+        </mat-form-field>
+        </p>
+
+          <p>
+            <mat-form-field class="example-full-width">
+            <mat-label>Eğitim Detayı</mat-label>
+              <input type="text" matInput placeholder="Eğitim bilgileri giriniz." formControlName="educationDetail">
+              <mat-error *ngIf="userControls.educationDetail.invalid">{{GetValidationMessages(userControls.educationDetail,"Eğitim Detayı")}}</mat-error>
+            </mat-form-field>
+            </p>
+
+            <p>
+              <mat-form-field class="example-full-width">
+              <mat-label>Personel Detayı</mat-label>
+                <input type="text" matInput placeholder="Personel bilgileri giriniz." formControlName="personalDetail">
+                <mat-error *ngIf="userControls.personalDetail.invalid">{{GetValidationMessages(userControls.personalDetail,"Personel Detayı")}}</mat-error>
+              </mat-form-field>
+              </p>
+
+              <p>
+                <mat-form-field class="example-full-width">
+                <mat-label>Yetenekleri</mat-label>
+                  <input type="text" matInput placeholder="Yetenekleri giriniz." formControlName="qualification">
+                  <mat-error *ngIf="userControls.qualification.invalid">{{GetValidationMessages(userControls.qualification,"Yetenekler")}}</mat-error>
+                </mat-form-field>
+                </p>
+
+                <p>
+                  <mat-form-field class="example-full-width">
+                  <mat-label>Hatalı Giriş</mat-label>
+                    <input type="number" matInput placeholder="" formControlName="hataliGirisSayisi">
+                    <mat-error *ngIf="userControls.hataliGirisSayisi.invalid">{{GetValidationMessages(userControls.hataliGirisSayisi,"Hatalı Giriş Sayısı")}}</mat-error>
+                  </mat-form-field>
+                  </p>
+
+                <!-- <p><em>Şifre Email adresi olarak kaydedilecektir.</em></p> -->
+
+        <div *ngIf="info!=null && info!=''" class="alert" [ngClass]="{'alert-primary' : success, 'alert-danger':!success}">
+          {{info}}
+          </div>
+
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save Click')">Save</button> -->
+          <div class="button">
+            <button type="submit" mat-raised-button color="primary"
+            [disabled]="loading"
+            >
+              <span   *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              {{guncellemeTipiButton}} Güncelle</button>
+          </div>
+        </div>
+
+        </form>
+
+      </div>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<h2>Öğrenci Anasayfa</h2>
+<hr>
+<!-- <app-single-selection></app-single-selection>
+<hr> -->
+<br>
+
+
+
+<div class="mat-elevation-z8">
+  <div style="text-align: center;">
+      <span   *ngIf="loading" class="spinner-border spinner-border-lg" role="status" aria-hidden="true"></span>
+  </div>
+
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="No">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element; let i =index"> {{1 + i + (paginator.pageIndex * paginator.pageSize)}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="courseName">
+      <th mat-header-cell *matHeaderCellDef> Kurs </th>
+      <td mat-cell *matCellDef="let element"> {{element.courseName}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="courseFees">
+      <th mat-header-cell *matHeaderCellDef> Ücret </th>
+      <td mat-cell *matCellDef="let element"> {{element.courseFees}} </td>
+    </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="paidFees">
+          <th mat-header-cell *matHeaderCellDef> Ödenen Ücret </th>
+          <td mat-cell *matCellDef="let element"> {{element.paidFees}} </td>
+        </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="statuName">
+      <th mat-header-cell *matHeaderCellDef> Durum </th>
+      <td mat-cell *matCellDef="let element"> {{element.statusName}} </td>
+    </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef> Bşl.Tarihi </th>
+          <td mat-cell *matCellDef="let element"> {{element.startDate | date: 'dd/MM/yyyy'}} </td>
+        </ng-container>
+
+            <!-- Symbol Column -->
+    <ng-container matColumnDef="finishDate">
+      <th mat-header-cell *matHeaderCellDef> Btş.Tarihi </th>
+      <td mat-cell *matCellDef="let element"> {{element.finishDate | date: 'dd/MM/yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bildirim">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Bildirimler </th>
+      <td mat-cell *matCellDef="let element">
+
+
+
+         <ul style=" list-style-type: none; margin: 0; padding:0;"> <!--class="list-group" -->
+          <!-- class="list-group-item"  -->
+          <li *ngFor="let notification of element.notifications">
+            <button class="btn btn-outline-primary" (click)="openNotificationItem(element,notification)" style="width: 100%;">{{notification.title}}</button>
+          </li>
+        </ul>
+      </td>
+    </ng-container>
+
+
+    <!-- <ng-container matColumnDef="Öğreniciler">
+      <th mat-header-cell *matHeaderCellDef> Öğreniciler </th>
+      <td mat-cell *matCellDef="let element">
+             <button class="btn btn-success m-2" (click)="listItem(element)">Öğreniciler</button>
+
+
+      </td>
+    </ng-container> -->
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator> -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>
+</div>

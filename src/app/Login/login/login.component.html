@@ -1,0 +1,38 @@
+<!-- <mat-card> -->
+  <!-- <mat-card-title>Login</mat-card-title> -->
+<!-- <mat-card-content> -->
+<form [formGroup]="loginForm" (ngSubmit)="onsubmit()">
+<p>
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input type="text" matInput placeholder="Lütfen emailinizi giriniz." formControlName="email">
+        <mat-error *ngIf="loginControls.email.invalid">{{GetValidationMessages(loginControls.email,"E-Posta")}}</mat-error>
+      </mat-form-field>
+</p>
+
+<p>
+  <!-- <mat-form-field>
+    <input type="password" matInput placeholder="password" formControlName="password">
+  </mat-form-field> -->
+  <mat-form-field class="example-full-width">
+    <mat-label>Şifre</mat-label>
+    <input type="password" matInput placeholder="Lütfen şifrenizi giriniz." formControlName="password">
+    <mat-error *ngIf="loginControls.password.invalid">{{GetValidationMessages(loginControls.password,"Şifre")}}</mat-error>
+  </mat-form-field>
+</p>
+
+<p *ngIf="info" class="error">
+  {{ info }}
+</p>
+
+<div class="button">
+  <button type="submit" mat-raised-button color="primary"
+  [disabled]="loading"
+  >
+    <span   *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Giriş Yap</button>
+</div>
+
+</form>
+<!-- </mat-card-content> -->
+<!-- </mat-card> -->

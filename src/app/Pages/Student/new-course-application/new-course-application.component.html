@@ -1,0 +1,106 @@
+<h2>Kurs İşlemleri Sayfası</h2>
+<hr>
+<!-- <app-single-selection></app-single-selection>
+<hr> -->
+
+<form class="example-form" [formGroup]="courseListForm" (ngSubmit)="onsubmit()">
+  <div class="row">
+    <div class="col-md-4">
+        <mat-form-field class="example-full-width">
+    <mat-label>Adı</mat-label>
+    <input matInput placeholder="Kurs Adı..." formControlName="name">
+  </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="button">
+        <button type="submit" mat-raised-button color="primary"
+        [disabled]="loading"
+        >
+          <span   *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Listele</button>
+      </div>
+
+    </div>
+    <div class="col-md-6" style="float: right;">
+      <!-- <button type="button" class="btn btn-outline-info m-2" (click)="editItem(newCourse)" style="float: right;">Yeni Kurs</button> -->
+    </div>
+
+  </div>
+
+  <div *ngIf="info!=null && info!=''" class="alert" [ngClass]="{'alert-primary' : success, 'alert-danger':!success}">
+    {{info}}
+    </div>
+
+</form>
+
+<br>
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="No">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element; let i =index"> {{1 + i + (paginator.pageIndex * paginator.pageSize)}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Ad </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="fees">
+      <th mat-header-cell *matHeaderCellDef> Ücret </th>
+      <td mat-cell *matCellDef="let element"> {{element.fees}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="durationYear">
+      <th mat-header-cell *matHeaderCellDef> Süre (Yıl) </th>
+      <td mat-cell *matCellDef="let element"> {{element.durationYear}} </td>
+    </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="durationMonth">
+          <th mat-header-cell *matHeaderCellDef> Süre (Ay) </th>
+          <td mat-cell *matCellDef="let element"> {{element.durationMonth}} </td>
+        </ng-container>
+
+            <!-- Symbol Column -->
+    <ng-container matColumnDef="durationWeek">
+      <th mat-header-cell *matHeaderCellDef> Süre (Hafta) </th>
+      <td mat-cell *matCellDef="let element"> {{element.durationWeek}} </td>
+    </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="durationDay">
+          <th mat-header-cell *matHeaderCellDef> Süre (Gün) </th>
+          <td mat-cell *matCellDef="let element"> {{element.durationDay}} </td>
+        </ng-container>
+
+            <!-- Symbol Column -->
+    <ng-container matColumnDef="kullaniciAd">
+      <th mat-header-cell *matHeaderCellDef> Öğretmen </th>
+      <td mat-cell *matCellDef="let element"> {{element.kullaniciAd}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="buttons">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+            <button class="btn btn-outline-success m-2" (click)="kaydol(element)">Kaydol</button>
+
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator> -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>
+</div>
